@@ -1,0 +1,65 @@
+# sarah-console std script file
+# @author   grandhelmsman<desupport@grandhelmsman.com>
+# @date     2019/02/28
+# @see      #std.tasks.json
+
+
+"cmd": [
+    # computing task dist service worker instance 1
+    {
+        "user": "@login",
+        "cmd" : "php server.php /cli/computing/task/dist?instance=worker01:action=@action",
+        "pipe": "/dev/null",
+        "track": true
+    }
+
+    # computing task dist service worker instance 2
+    ,{
+        "user": "@login",
+        "cmd" : "php server.php /cli/computing/task/dist?instance=worker02:action=@action",
+        "pipe": "/dev/null",
+        "track": true
+    }
+
+    # application task dist service worker instance 1
+    ,{
+        "user": "@login",
+        "cmd" : "php server.php /cli/application/task/dist?instance=worker01:action=@action",
+        "pipe": "/dev/null",
+        "track": true
+    }
+
+    # application task dist service worker instance 2
+    ,{
+        "user": "@login",
+        "cmd" : "php server.php /cli/application/task/dist?instance=worker02:action=@action",
+        "pipe": "/dev/null",
+        "track": true
+    }
+
+    # node post asynchronized worker instance 1
+    ,{
+        "user": "@login",
+        "cmd" : "php server.php /cli/node/post/consume?instance=worker01:action=@action",
+        "pipe": "/dev/null",
+        "track": true
+    }
+
+    # node post asynchronized worker instance 2
+    ,{
+        "user": "@login",
+        "cmd" : "php server.php /cli/node/post/consume?instance=worker02:action=@action",
+        "pipe": "/dev/null",
+        "track": true
+    }
+
+    # node post asynchronized worker instance 3
+    ,{
+        "user": "@login",
+        "cmd" : "php server.php /cli/node/post/consume?instance=worker03:action=@action",
+        "pipe": "/dev/null",
+        "track": true
+    }
+
+    # add more here
+]

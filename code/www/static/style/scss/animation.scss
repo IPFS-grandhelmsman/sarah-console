@@ -1,0 +1,155 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@-moz-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@-o-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    from {
+        @include rotate(0);
+    }
+    to {
+        @include rotate(360deg);
+    }
+}
+@-moz-keyframes rotate {
+    from {
+        @include rotate(0);
+    }
+    to {
+        @include rotate(360deg);
+    }
+}
+@-webkit-keyframes rotate {
+    from {
+        @include rotate(0);
+    }
+    to {
+        @include rotate(360deg);
+    }
+}
+@-o-keyframes rotate {
+    from {
+        @include rotate(0);
+    }
+    to {
+        @include rotate(360deg);
+    }
+}
+
+@keyframes slider {
+    form {
+        left: 0;
+    }
+    to {
+        left: 85px;
+    }
+}
+@-moz-keyframes slider {
+    form {
+        left: 0;
+    }
+    to {
+        left: 85px;
+    }
+}
+@-ms-keyframes slider {
+    form {
+        left: 0;
+    }
+    to {
+        left: 85px;
+    }
+}
+@-webkit-keyframes slider {
+    form {
+        left: 0;
+    }
+    to {
+        left: 85px;
+    }
+}

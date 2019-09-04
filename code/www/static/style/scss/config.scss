@@ -1,0 +1,231 @@
+@charset "utf-8";
+/*所有颜色*/
+$color_gray_v1: #060606;
+$color_gray_v2: #333333;
+$color_gray_v3: rgba(0,0,0,0.08);
+$color_gray_v4: rgba(255, 255, 255, 0);
+$color_gray_v5: rgba(255, 255, 255, 0.1);
+$color_gray_v6: rgba(255, 255, 255, 0.3);
+$color_gray_v7: rgba(199, 210, 220, 0.3);
+$color_gray_v8: rgba(0, 0, 0, 0);
+$color_gray_v9: #F7F8FA;;
+$color_gray_v10: #394551;;
+$color_gray_v11: #0B1013;;
+$color_gray_v12: rgba(0,0,0,0.5);
+$color_gray_v13: rgba(0,0,0,0.15);
+$color_gray_v14:  rgba(0,0,0,0.65);
+$color_gray_v15:  #707D8A;
+$color_gray_v16:  #D9D9D9;
+$color_gray_v17:  rgba(11,16,19,0.10);
+$color_gray_v18:  #A8B4BF;
+$color_gray_v19:  #888;
+$color_gray_v20:  rgba(216,216,216,0.15);
+$color_gray_v21:  #202a33;
+$color_gray_v22:  #111213;
+$color_gray_v25:  rgba(0,0,0,0.25);
+$color_gray_v26:  #E9EFF5;
+$color_gray_v27:  #C7D2DC;
+$color_gray_v28:  rgba(0,0,0,0.75);
+$color_gray_v29:  rgba(199,210,220,0.10);
+$color_gray_v30: rgba(199, 210, 220, 0.22);
+$color_gray_v31:  rgba(11,16,19,0.75);
+$color_gray_v32:  #b7bbc8;
+$color_gray_v33:  #dcdfe2;
+
+$color_white: #fff;
+$color_blue_v1: #327BFA;
+$color_blue_v2: #216ef3;
+$color_blue_v3: #1890FF;
+$color_blue_v4: #53A2EA;
+$color_orange: #ffa162;
+$color_orange_v2: #fc8b3e;
+$color_green: #36D1A3;
+$color_green_v2: #17bd8b;
+$color_green_v3: #4FE3C5;
+$color_red: #FF6262;
+$color_red_v2: #E94747;
+$color_purple: #260425;
+
+/*所有字体大小*/
+$font-xs: 12px;
+$font-sm: 13px;
+$font-md: 14px;
+$font-mdzz: 15px;
+$font-lg: 16px;
+$font-lg-v1: 18px;
+$font-lg-v2: 20px;
+$font-lg-v3: 24px;
+$font-lg-v4: 28px;
+$font-lg-v5: 32px;
+$font-lg-v6: 22px;
+$font-lg-v7: 60px;
+
+
+/*所有混合器*/
+@mixin box-sizing($box_sizing){
+    -webkit-box-sizing: $box_sizing;
+    -moz-box-sizing: $box_sizing;
+    box-sizing: $box_sizing;
+}
+@mixin user-select($select){
+    -webkit-user-select: $select;
+    -moz-user-select: $select;
+    -ms-user-select: $select;
+    user-select: $select;
+}
+@mixin writing-mode($mode1,$mode2){
+    -webkit-writing-mode: $mode1;
+    -ms-writing-mode: $mode2;
+    writing-mode: $mode1;
+}
+@mixin scale($scale){
+    -webkit-transform: scale($scale);
+    -moz-transform: scale($scale);
+    -ms-transform: scale($scale);
+    -o-transform: scale($scale);
+    transform: scale($scale);
+}
+@mixin rotate ($rotate) {
+    -webkit-transform: rotate($rotate);
+    -moz-transform: rotate($rotate);
+    -ms-transform: rotate($rotate);
+    -o-transform: rotate($rotate);
+    transform: rotate($rotate);
+}
+
+@mixin box-shadow($shadow){
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin border-radius($radius){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin text-overflow($overflow){
+    -ms-text-overflow: $overflow;
+    text-overflow: $overflow;
+}
+@mixin transform($translate,$scale){
+    -webkit-transform: translate($translate) scale($scale);
+    -moz-transform: translate($translate) scale($scale);
+    -ms-transform: translate($translate) scale($scale);
+    -o-transform: translate($translate) scale($scale);
+    transform: translate($translate) scale($scale);
+}
+@mixin translate($translate){
+    -webkit-transform: translate($translate);
+    -moz-transform: translate($translate);
+    -ms-transform: translate($translate);
+    -o-transform: translate($translate);
+    transform: translate($translate);
+}
+@mixin transition($transition){
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+
+}
+@mixin linear-gradient($gradient){
+    background: -webkit-linear-gradient($gradient);
+    background: -moz-linear-gradient($gradient);
+    background: -ms-linear-gradient($gradient);
+    background: -o-linear-gradient($gradient);
+    background: linear-gradient($gradient);
+}
+
+@mixin wordBreak($break){
+    -ms-word-break: $break;
+    word-break: $break;
+}
+@mixin animation($ani){
+    -webkit-animation: $ani;
+    -o-animation: $ani;
+    animation: $ani;
+}
+@mixin rotate($deg){
+    -webkit-transform: rotate($deg);
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input, textarea{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    @include box-sizing(border-box);
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+    background-color: $color_blue_v1;
+    @include border-radius(10px);
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    background-color: $color_white;
+    @include border-radius(10px);
+    @include box-shadow(inset 0 0 6px $color_gray_v25);
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    background-color: $color_blue_v1;
+    @include border-radius(10px);
+    @include box-shadow(inset 0 0 6px $color_gray_v25);
+}
+
+.float-right{float: right};
+.float-left{float: left;}
+.float-clear{overflow: hidden;}
+.text-center{text-align: center;}
+.text-left{text-align: left;}
+.text-right{text-align: right;}
+
+.state-error{color: $color_red;}
+.state-normal{}
+.state-warning{color: $color_orange;}
+.state-urgent{color: $color_red;}
+.state-grey{color: $color_gray_v18;}
+.state-grey-v2{color: $color_gray_v14;}
+.state-blue{color: $color_blue_v1;}
+.state-green{color: $color_green;}
+
+.sarah-hide{display: none !important;}

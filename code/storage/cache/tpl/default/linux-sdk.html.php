@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Linux SDK文档 - 正舵者矿机云监测</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="/static/style/default/prettify.min.css" rel="stylesheet">
+    <link href="/static/style/default/sdk.css?v=201808311215" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a class="label">SarahOS Linux SDK下载和安装教程</a>
+    </div>
+    <div class="view active" id="test-view">
+        <h3 class="">一，下载SDK</h3>
+        <div class="line">请下载Linux SDK，然后参考下面的安装文档进行安装。</div>
+        <div class="dlink-box">
+            <a href="/sdk/linux/download" class="dlink">点此下载Linux 64Bit SDK安装程序&nbsp;&gt;&gt;</a>
+        </div>
+
+        <h3>二，安装SDK</h3>
+        <div class="line">1，解压SDK，设解压路径为: {SDK_ROOT}</div>
+        <div class="line">2，终端安装，打开终端（Ctrl + Alt + T），运行如下命令：</div>
+        <pre class="code prettyprint lang-js">
+cd {SDK_ROOT}
+sudo ./install.sh
+        </pre>
+        <div class="line">例如，假设解压路径在Home的Downloads/SarahOS-Linux-SDK下，看到如下界面表示安装成功。</div>
+        <pre class="code prettyprint lang-js">
+sarahos@sarah-desktop:~$ cd ~/Downloads/
+sarahos@sarah-desktop:/home/sarah/Downloads/SarahOS-Linux-SDK/$ sudo ./install.sh 
++-Try to stop the running sarah-collector with pid=7724 ...  --[Ok]
++-Try to copy the sarah-collector to /usr/local/bin ...  --[Ok]
+|--/etc/sarah/config.json already exists !!!
++-Try to set the service manager ...  --[Ok]
++-Try to set the auto boot start ...  --[Ok]
++-Try to start the sarah service ...  --[Ok]
+        </pre>
+        <div>3，卸载:</div>
+        <pre class="code prettyprint lang-js">
+cd {SDK_ROOT}
+sudo ./uninstall.sh
+        </pre>
+        <div class="line">例如，假设解压路径在Home的Downloads/SarahOS-Linux-SDK下，看到如下界面表示卸载成功。</div>
+        <pre class="code prettyprint lang-js">
+sarahos@sarah-desktop:~$ cd ~/Downloads/
+sarahos@sarah-desktop:/home/sarah/Downloads/SarahOS-Linux-SDK/$ sudo ./uninstall.sh 
++-Try to stop the running sarah-collector with pid=12251 ...  --[Ok]
++-Try to remove the /usr/local/bin/sarah-collector ...  --[Ok]
++-Try to remove the service manager script ...  --[Ok]
++-Try to remove the boot auto start script ...  --[Ok]
+        </pre>
+    </div>
+</div>
+<script language="javascript" src="/static/js/common/jquery.1.11.js"></script>
+<script language="javascript" src="/static/js/common/prettify.min.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+    prettyPrint();
+});
+</script>
+</body>
+</html>

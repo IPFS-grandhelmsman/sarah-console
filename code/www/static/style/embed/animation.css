@@ -1,0 +1,87 @@
+/*
+Error: Undefined mixin 'rotate'.
+        on line 93 of scss/animation.scss, in `rotate'
+        from line 93 of scss/animation.scss
+
+88:     }
+89: }
+90: 
+91: @keyframes rotate {
+92:     from {
+93:         @include rotate(0);
+94:     }
+95:     to {
+96:         @include rotate(360deg);
+97:     }
+98: }
+
+Backtrace:
+scss/animation.scss:93:in `rotate'
+scss/animation.scss:93
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:348:in `block in visit_mixin'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:98:in `block in with_mixin'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:135:in `with_frame'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:98:in `with_mixin'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:346:in `visit_mixin'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:79:in `block in with_base'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:135:in `with_frame'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:79:in `with_base'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:429:in `block (2 levels) in visit_rule'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:429:in `map'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:429:in `block in visit_rule'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:79:in `block in with_base'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:135:in `with_frame'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:79:in `with_base'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:513:in `block (2 levels) in visit_directive'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:513:in `map'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:513:in `block in visit_directive'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:512:in `visit_directive'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:79:in `block in with_base'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:135:in `with_frame'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/stack.rb:79:in `with_base'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:52:in `map'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:157:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/root_node.rb:36:in `css_tree'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/plugin/compiler.rb:209:in `each'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/plugin/compiler.rb:443:in `on_file_changed'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-3.7.2/lib/sass/plugin/compiler.rb:320:in `block in watch'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/event/config.rb:23:in `call'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:115:in `_process_changes'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:19:in `block in loop_for'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop_for'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:84:in `_wait_for_changes'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:42:in `block in setup'
+D:/download/ruby/install/Ruby24-x64/lib/ruby/gems/2.4.0/gems/sass-listen-4.0.0/lib/sass-listen/internals/thread_pool.rb:6:in `block in add'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined mixin 'rotate'.\A         on line 93 of scss/animation.scss, in `rotate'\A         from line 93 of scss/animation.scss\A \A 88:     }\A 89: }\A 90: \A 91: @keyframes rotate {\A 92:     from {\A 93:         @include rotate(0);\A 94:     }\A 95:     to {\A 96:         @include rotate(360deg);\A 97:     }\A 98: }"; }

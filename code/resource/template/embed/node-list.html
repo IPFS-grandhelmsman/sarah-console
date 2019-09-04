@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>节点管理</title>
+    <link href="/static/font/iconfont.css?v=<?=${css_version}?>" rel="stylesheet" type="text/css"/>
+    <link href="/static/style/embed/sarah.css?v=<?=${css_version}?>" rel="stylesheet" type="text/css"/>
+    <style>
+        .mark-option{left: -8px;top: 51px;min-width: 130px;width: auto;padding: 4px 15px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class="sarah-table">
+            <thead>
+            <tr class="table-title">
+                <th class="padding-left text-overflow">节点UID</th>
+                <th class="text-overflow table-row-v5">节点名称</th>
+                <th class="padding-left text-overflow table-row-v1">版本</th>
+                <th class="padding-left text-overflow table-row-v2">状态</th>
+                <th class="padding-left text-overflow table-row-v5">硬件配置</th>
+                <th class="padding-left text-overflow table-row-v2">系统负载</th>
+                <th class="padding-left text-overflow table-row-v1">内存</th>
+                <th class="padding-left text-overflow table-row-v1">磁盘</th>
+                <th class="padding-left text-overflow table-row-v4">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?if(empty(${data})){?>
+            <tr class="table-row">
+                <td class="text-center" colspan="9">暂无任何注册节点</td>
+            </tr>
+            <?}else{?>
+            <?foreach(${data} as $val){?>
+            <tr class="table-row">
+                <td class="padding-left text-overflow" title="<?=$val.node_uid?>">
+                    <a class="node-uid" href="/node/monitor?<?=$val.v_qstr?>&__skin=embed&node_uid=<?=$val.node_uid?>"><?=$val.node_uid?></a>
+                </td>
+                <td class="text-overflow table-node-name" title="<?=$val.name?>" data-vqstr="<?=$val.v_qstr?>">
+                    <input class="float-left node-name table-name-input" type="text" value="<?=$val.name?>" readonly data-value="<?=$val.name?>">
+                    <div class="float-left node-edit table-name-edit"><i class="iconfont iconbianji1"></i></div>
+                </td>
+                <td class="padding-left text-overflow" title="<?=$val.sarah_ver?>"><?=$val.sarah_ver?></td>
+                <td class="padding-left">
+                    <?if($val.status==1) {?>
+                        <em>正常</em>
+                    <?}else if($val.status==2){?>
+                        <em class="state-warning">重启中</em>
+                    <?}else{?>
+                        <em class="float-left state-error" data-toggle="tooltip">故障</em>
+                        <div class="float-left fault-mark margin-left-v1">
+                            <i class="iconfont iconWarning node-error mark"></i>
+                            <div class="mark-option" >节点未响应</div>
+                        </div>
+                    <?}?>
+                </td>
+                <td class="padding-left text-overflow" title="<?=$val.cpu_cores?>CPU <?=$val.ram_str?> <?=$val.disk_str?>">
+                    <em><?=$val.cpu_cores?>CPU</em>&nbsp;
+                    <em><?=$val.ram_str?></em>&nbsp;
+                    <em><?=$val.disk_str?></em>
+                </td>
+                <td class="padding-left text-overflow" title="<?=$val.load_avg?>"><em class="state-<?=$val.load_state?>"><?=$val.load_avg?></em></td>
+                <td class="padding-left text-overflow" title="<?=$val.ram_percent?>%"><em class="state-<?=$val.ram_state?>"><?=$val.ram_percent?>%</em></td>
+                <td class="padding-left text-overflow" title="<?=$val.disk_percent?>%"><em class="state-<?=$val.disk_state?>"><?=$val.disk_percent?>%</em></td>
+                <td class="padding-left">
+                    <div class="select">
+                        <div class="title state-blue more-option">更多操作 <i class="iconfont iconxiala icon"></i></div>
+                        <ul class="option">
+                            <li class="item reboot" data-vqstr="<?=$val.v_qstr?>">重启</li>
+                            <li class="item terminal" data-vqstr="<?=$val.v_qstr?>" data-nodeuid="<?=$val.node_uid?>">简易终端</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <?}}?>
+            </tbody>
+        </table>
+        <?include default/blade/paging-simple.blade.html?>
+    </div>
+    <?include common/dialog.html?>
+    <?include common/terminal_dialog.html?>
+    <script src="/script/node/list?v=20190412"></script>
+    <script>
+        window.nodeList.init();
+        window.nodeOperation.init({
+            reboot: ".reboot",
+            terminal: ".terminal",
+            app_key: "<?=${session.app_key}?>"
+        });
+    </script>
+</body>
+</html>

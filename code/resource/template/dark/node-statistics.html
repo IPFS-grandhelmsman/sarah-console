@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>节点统计 - 正舵者矿机云监测</title>
+    <link href="/static/style/common/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/style/dark/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <?include dark/blade/header.blader.html?>
+    <?include dark/blade/left.menu.blader.html?>
+    <div class="main-contaim">
+        <div class="node-title">
+            <img class="node-title-img" src="/static/image/dark/icon-jdtj.png" alt="统计">
+            <span>节点统计</span>
+        </div>
+        <div class="contain-djtj">
+            <div class="contain-jdtj-block">
+                <div class="contain-statistic-header">硬件资源</div>
+                <div style="padding-left: 90px;">
+                    <table class="contain-statistic-table">
+                        <thead>
+                            <tr class="contain-statistic-col">
+                                <th class="text-center">总结点数</th>
+                                <th class="text-center">总vCPU</th>
+                                <th class="text-center">平均vCPU</th>
+                                <th class="text-center">总内存</th>
+                                <th class="text-center">总存储空间</th>
+                                <th class="text-center">更新时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center"><?=${stat.total}?></td>
+                                <td class="text-center"><?=${stat.cpu_cores}?></td>
+                                <td class="text-center"><?=${stat.avg_cpu_cores}?></td>
+                                <td class="text-center"><?=${stat.ram_kb}?>KB&nbsp;≈&nbsp;<?=${stat.ram_str}?></td>
+                                <td class="text-center"><?=${stat.disk_kb}?>KB&nbsp;≈&nbsp;<?=${stat.disk_str}?></td>
+                                <td class="text-center"><?=${stat.updated_time}?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="contain-jdtj-block">
+                <div class="contain-statistic-header">基础监测</div>
+                <div style="padding-left: 90px;">
+                    <table class="contain-statistic-table">
+                        <thead>
+                            <tr class="contain-statistic-col">
+                                <th class="text-center">平均系统负载</th>
+                                <th class="text-center">内存使用</th>
+                                <th class="text-center">磁盘使用</th>
+                                <th class="text-center">下载带宽</th>
+                                <th class="text-center">上传带宽</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center"><?=${stat.avg_loadavg}?></td>
+                                <td class="text-center"><?=${stat.ram_used_kb}?>&nbsp;≈&nbsp;<?=${stat.ram_used_str}?>, <?=${stat.ram_used_percent}?>%</td>
+                                <td class="text-center"><?=${stat.disk_used_kb}?>&nbsp;≈&nbsp;<?=${stat.disk_used_str}?>, <?=${stat.disk_used_percent}?>%</td>
+                                <td class="text-center"><?=${stat.incoming_db}?>B/sec&nbsp;≈&nbsp;<?=${stat.incoming_db_str}?></td>
+                                <td class="text-center"><?=${stat.outgoing_bd}?>B/sec&nbsp;≈&nbsp;<?=${stat.outgoing_bd_str}?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="contain-jdtj-block">
+                <div class="contain-statistic-header">节点分布</div>
+                <div class="world-map" id="widget_map"></div>
+            </div>
+        </div>
+    </div>
+    <?include dark/blade/footer.blader.html?>
+    <script src="/static/js/common/jquery.1.11.js"></script>
+    <script src="/static/js/common/bootstrap.min.js"></script>
+    <script src="/static/js/common/echarts.min.js"></script>
+    <script src="/static/js/dark/node-map.js"></script>
+    <script src="http://echarts.baidu.com/asset/map/js/world.js"></script>
+    <script type="text/javascript">
+        actionNav("statistic");
+        var nodeData = [
+            {name:"China",value:"1538",coordinate:[102.947956, 33.759559]},
+            {name:"United States",value:"586",coordinate: [-102.560794, 39.830238]},
+            {name:"Canada",value:"264",coordinate: [-118.493369, 60.197298]},
+            {name:"Australia",value:"582",coordinate: [132.740687, -25.042580]},
+            {name:"Japan",value:"465",coordinate: [138.265336, 36.196679]},
+            {name:"United Kingdom",value:"256",coordinate: [-2.946899, 54.710688]},
+        ];
+        var skin = {
+            bgColor: "#3C3D3E",
+            textColor:"",
+            tooltipBgColor: "",
+            tooltipBdColor: "",
+            geoBgColor: "#1f648a",
+            geoBdColor: "#009688",
+            geoHoverBgColor:"#00b0ad",
+            legendColor: ["rgba(255,255,255,0.7)"]
+        };
+        window.NodeMap.init({
+            map_dom: document.getElementById('widget_map'),
+            data: nodeData,
+            skin: skin
+        });
+    </script>
+</body>
+</html>

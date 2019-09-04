@@ -1,0 +1,79 @@
+<?if(isset(${page})){
+$html = array();
+$html[] = '<nav class="pagination-nav"><ul class="pagination">';
+
+if ( ${page.style} == PAGE_STD_STYLE ) {
+    $html[] = '<li><a>总记录：'.${page}['total'].'</a></li>';
+    $html[] = '<li><a>'.${page}['pageno'].'/'.${page}['pages'].'</a></li>';
+
+    if ( ${page}['pageno'] > 1 ) {
+        $html[] = '<li><a href="'.${page}['link'].'1">首页</a></li>';
+    } else {
+        $html[] = '<li class="disabled"><a>首页</a></li>';
+    }
+}
+
+if ( ${page}['pageno'] > 1 ) {
+    $html[] = '<li><a href="'.${page}['link'].(${page}['pageno']-1).'">&lt;&lt;上一页</a></li>';
+} else {
+    $html[] = '<li class="disabled"><a>&lt;&lt;上一页</a></li>';
+}
+
+if ( ${page.style} == PAGE_SHOP_STYLE ) {
+    //start quick two handle
+    $_start = ${page}['pageno'] - ${page}['offset'];
+    if ( $_start <= 0 ) $_start = 1;
+
+    if ( $_start > 1 ) {
+        $_limit = ($_start == ${page}['left'] ) ? 1 : ${page}['left'];
+        for ( $i = 1; $i <= $_limit; $i++ ) {
+            $html[] = '<li><a href="'.${page}['link'].$i.'">'.$i.'</a></li>';
+        }
+        if ( $_limit != 1 ) $html[] = '<li><a>...</a></li>';
+    }
+
+    //prev pages
+    for ( $i = $_start; $i < ${page}['pageno']; $i++ ) {
+        $html[] = '<li><a href="'.${page}['link'].$i.'">'.$i.'</a></li>';
+    }
+    $html[] = '<li class="active"><a href="#">'.${page}['pageno'].'</a></li>';
+
+    $_end = ${page}['pageno'] + ${page}['offset'];
+    if ( $_end > ${page}['pages'] ) $_end = ${page}['pages'];
+
+    for ( $i = ${page}['pageno'] + 1; $i <= $_end; $i++ ) {
+        $html[] = '<li><a href="'.${page}['link'].$i.'">'.$i.'</a></li>';
+    }
+}
+
+if ( ${page}['pageno'] < ${page}['pages'] ) {
+    $html[] = '<li><a href="'.${page}['link'].(${page}['pageno']+1).'">下一页&gt;&gt;</a></li>';
+} else {
+    $html[] = '<li class="disabled"><a>下一页&gt;&gt;</a></li>';
+}
+
+if ( ${page.style} == PAGE_STD_STYLE ) {
+    if ( ${page}['pageno'] < ${page}['pages'] ) {
+        $html[] = '<li><a href="'.${page}['link'].${page}['pages'].'">尾页</a></li>';
+    } else {
+        $html[] = '<li class="disabled"><a>尾页</a></li>';
+    }
+}
+
+if ( ${page.style} == PAGE_SHOP_STYLE ) {
+    $html[] = '<li><a>共'.${page}['pages'].'页</a></li>';
+}
+
+$html[] = '<li><a style="width: 180px; padding: 0; height: 31px;">';
+$html[] = '<div class="input-group input-group-sm syrian-page-form">';
+$html[] = '<span class="input-group-addon page-msg-start">到第</span>';
+$html[] = '<input type="text" class="form-control page-msg-input" id="input-pageno" value="'.${page}['pageno'].'">';
+$html[] = '<span class="input-group-addon page-msg-end">页</span>';
+$html[] = '<span class="input-group-btn">';
+$html[] = '<button class="btn btn-default page-submit-btn" type="button" onclick="var ele=document.getElementById(\'input-pageno\');if(ele.value.match(/([0-9]{1,})/)!=null) document.location.href=\''.${page.link}.'\'+ele.value;">确定</button>';
+$html[] = '</span>';
+$html[] = '</div>';
+$html[] = '</a></li>';
+$html[] = '</ul></nav>';
+echo implode("\n", $html);
+}?>

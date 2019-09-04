@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control"   CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>节点列表 - 正舵者矿机云监测</title>
+    <link href="/static/style/common/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/style/dark/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <?include dark/blade/header.blader.html?>
+    <?include dark/blade/left.menu.blader.html?>
+    <div class="main-contaim">
+        <div class="node-title">
+            <img class="node-title-img" src="/static/image/dark/icon-jd-black.png" alt="节点">
+            <span>节点列表</span>
+        </div>
+        <div class="node-content">
+            <table class="node-table">
+                <thead>
+                    <tr class="node-table-col node-table-head">
+                        <th class="">UID</th>
+                        <th class="">版本</th>
+                        <th class="">状态</th>
+                        <th class="">硬件配置</th>
+                        <th class="">系统负载</th>
+                        <th class="">内存</th>
+                        <th class="">磁盘</th>
+                        <th class="">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?if(empty(${data})){?>
+                        <tr class="node-table-col">
+                            <td colspan="8">暂无任何注册节点</td>
+                        </tr>
+                    <?}else{?>
+                        <?foreach(${data} as $val){?>
+                    <tr class="node-table-col">
+                        <td class="td-length-lg"><?=$val.node_uid?></td>
+                        <td class="td-length-sm"><?=$val.sarah_ver?></td>
+                        <td class="td-length-sm">
+                            <?if($val.status==1) {?>
+                            <em class="state-normal">运行中</em>
+                            <?}else if($val.state==2){?>
+                            <em class="state-rebooting">重启中</em>
+                            <?}else{?>
+                            <em data-toggle="tooltip" title="最近硬件统计信息上于：<?=$val.updated_time?>，超过了两倍interval时间" class="state-urgent">故障</em>
+                            <?}?>
+                        </td>
+                        <td class="td-length-md">
+                            <em><?=$val.cpu_cores?>CPU</em>&nbsp;
+                            <em><?=$val.ram_str?></em>&nbsp;
+                            <em><?=$val.disk_str?></em>
+                        </td>
+                        <td class="td-length-sm"><em class="state-<?=$val.load_state?>"><?=$val.load_avg?></em></td>
+                        <td class="td-length-sm"><em class="state-<?=$val.ram_state?>"><?=$val.ram_percent?>%</em></td>
+                        <td class="td-length-sm"><em class="state-<?=$val.disk_state?>"><?=$val.disk_percent?>%</em></td>
+                        <td class="td-length-lg">
+                            <a class="node-btn btn-info" href="/node/monitor?<?=$val.v_qstr?>&node_uid=<?=$val.node_uid?>"><em class="glyphicon glyphicon-stats"></em>&nbsp;监测</a>
+                            <a class="node-btn btn-warning" href="/node/view?<?=$val.v_qstr?>&node_uid=<?=$val.node_uid?>"><em class="glyphicon glyphicon-list-alt"></em>&nbsp;硬件信息</a>
+                            <a class="node-btn btn-mana" href="/node/manage?<?=$val.v_qstr?>&node_uid=<?=$val.node_uid?>"><em class="glyphicon glyphicon-wrench"></em>&nbsp;管理</a>
+                        </td>
+                    </tr>
+                    <?}}?>
+                </tbody>
+            </table>
+            <?include default/blade/paging-bootstrap.blade.html?>
+        </div>
+    </div>
+    <?include dark/blade/footer.blader.html?>
+    <script src="/static/js/common/jquery.1.11.js"></script>
+    <script src="/static/js/common/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        actionNav("node")
+    </script>
+</body>
+</html>

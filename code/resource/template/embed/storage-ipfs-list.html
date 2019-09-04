@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>ipfs存储</title>
+    <link href="/static/font/iconfont.css?v=<?=${css_version}?>" rel="stylesheet" type="text/css"/>
+    <link href="/static/style/embed/sarah.css?v=<?=${css_version}?>" rel="stylesheet" type="text/css"/>
+    <style>
+        .container{margin: 60px 0 20px 0;}
+        .nav .split{color: #707D8A;}
+        .nav .text{font-size: 15px;cursor: pointer;text-decoration: none;}
+        .nav .text:hover {color: #327BFA;}
+        .file-none{background-image: url("/static/image/embed/icon_none.png")}
+        .image_gif,.image_jpeg,.image_png,.image_x-icon{background-image: url("/static/image/embed/icon_img.png")}
+        .application-pdf,.application_vnd_ms-excel,.application_vnd_ms-powerpoint,.application_vnd_ms-works,.application_wps-office_docx,.application_pdf,.application_msword{background-image: url("/static/image/embed/icon_word.png")}
+        .file-text,.application\/x-javascript,.application_sql,.application_json{background-image: url("/static/image/embed/icon_txt.png")}
+        .application_octet-stream{background-image: url("/static/image/embed/icon_exe.png")}
+        .audio_basic,.audio_mid,.audio_mpeg,.audio_x-wav,.audio_x-pn-realaudio,.audio_x-mpegurl{background-image: url("/static/image/embed/icon_music.png")}
+        .video_mpeg,.video_quicktime,.video_x-ms-asf,.video_x-la-asf,.video_x-msvideo,.video_x-sgi-movie{background-image: url("/static/image/embed/icon_video.png")}
+        .file_dir{background-image: url("/static/image/embed/icon_dir.png")}
+        .preview-pdf{width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+<nav class="nav">
+    <? if (empty(${data})) {?>
+        <div class="float-left text">
+            还未上传任何文件，请点击“上传文件”进行存储
+        </div>
+    <? } else { ?>
+        <div class="float-left" id="filesNav">
+
+        </div>
+    <? } ?>
+    <div class="float-right">
+        <div class="pos-relative margin-top-v3">
+            <button class="btn btn-blue btn-xs" id="addFiles"><i class="iconfont iconiconjia icon"></i> 上传</button>
+            <div class="input-select sarah-hide" id="upload">
+                <div class="item">
+                    <div class="text"> <i class="iconfont iconwenjianmiaobian icon"></i> 上传文件</div>
+                    <input class="file" id="uploadFile" type="file" multiple>
+                </div>
+                <div class="item">
+                    <div class="text"> <i class="iconfont iconwenjianjiamiaobian icon"></i> 上传文件夹</div>
+                    <input class="file" id="uploadFileDirectory" type="file" webkitdirectory="true">
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <ul class="file-list" id="file_list">
+        <?foreach(${data} as $val){?>
+            <li class="item float-clear">
+                <a class="file-link"  <?=$val.mimetype == 'file/dir' ? 'href="?'.$val.v_qstr.'&path='.($_GET['path']??'').'/'.$val.file.'"' : ''?>>
+                    <div>
+                        <div class="float-left file-logo file-none
+                           <?=$val.top_type == 'text' ? 'file-text': $val.cls_type ?>"></div>
+                        <div class="float-left detail">
+                            <div class="title" data-vqstr="<?=$val.v_qstr?>" data-type="<?=$val.mimetype?>">
+                                <span class="file-title"><?=$val.file?></span>
+                                <i class="iconfont iconbianji1 icon edit-title"></i>
+                            </div>
+                            <div class="hash">
+                                <span class="hash-text"><?=$val.hash?></span>
+                                <i class="iconfont iconfuzhi copy-hash"></i>
+                            </div>
+                        </div>
+                        <div class="size float-left"><?=$val.size_str?></div>
+                        <div class="time float-left"><?=$val.created_time?></div>
+
+                        <div class="option float-right text-right  margin-right-v3" data-hash="<?=$val.hash?>" data-name="<?=$val.file?>" data-type="<?=$val.mimetype?>">
+                            <? if ($val.mimetype != "file/dir") { ?>
+                                <span class="iconfont iconyulan preview sarah-hide" title="预览"></span>
+                            <? } ?>
+                            <span class="iconfont iconxiazai download" title="下载" ></span>
+                            <span class="iconfont iconshuaxin1 download-animation sarah-hide" title="资源加载中" ></span>
+                            <span class="iconfont iconfenxiang share" title="分享"></span>
+                            <span class="iconfont iconshanchu1 delete" title="删除" data-vqstr="<?=$val.v_qstr?>"></span>
+                        </div>
+                        <div class="progress float-right">
+
+                        </div>
+                    </div>
+                </a>
+            </li>
+        <?}?>
+    </ul>
+    <?include default/blade/paging-simple.blade.html?>
+</div>
+
+<?include common/dialog.html?>
+<div class="preview-bg" id="previewBg"></div>
+<div class="preview-dialog" id="previewDialog">
+    <div class="preview-title">
+        预览 &gt; <span class="filename" id="previewName"></span>
+        <i class="iconfont iconguanbi1 float-right preview-close" id="closePreview"></i>
+    </div>
+    <!--图片预览-->
+    <div class="preview-main">
+        <img class="preview-content" id="previewImg">
+        <pre class="preview-content" id="previewText">
+
+        </pre>
+        <iframe class="preview-content preview-pdf" src="" id="previewPdf">当前浏览器不支持该文件的预览，请更换浏览器 </iframe>
+    </div>
+    <!--文档预览-->
+
+</div>
+
+<div class="dialog" id="deleteDialog" style="width: 420px;">
+    <div class="float-clear">
+        <i class="iconfont iconguanbi1 float-right preview-close" id="closeDelete"></i>
+    </div>
+    <div class="text-center "><i class="iconfont iconshanchu option-logo"></i> </div>
+    <div class="text-center option-title" id="deleteOption">删除1个文件夹</div>
+    <div class="text-center option-desc">本操作不可撤销，是否确定删除？</div>
+    <div class="margin-top-v6">
+        <button class="float-left btn btn-cancel btn-md" id="cancelDelete">取消</button>
+        <button class="float-right btn btn-danger btn-md" id="sureDelete">删除</button>
+    </div>
+</div>
+
+<div class="dialog" id="shareDialog">
+    <div class="float-clear">
+        <i class="iconfont iconguanbi1 float-right preview-close" id="closeShare"></i>
+    </div>
+    <div class="text-center "><i class="iconfont icongongxiang option-logo"></i> </div>
+    <div class="text-center option-title">共享文件</div>
+    <div class="text-center option-desc">请复制以下链接并与您的朋友分享</div>
+    <div class="float-clear">
+        <input class="form-input" id="shareLink" type="text" style="width: 420px;" readonly>
+    </div>
+    <div class="margin-top-v3">
+        <button class="float-left btn btn-cancel btn-md" id="cancelShare">取消</button>
+        <button class="float-right btn btn-blue btn-md" id="copyShare">复制</button>
+    </div>
+</div>
+
+<div class="dialog" id="renameDialog">
+    <div class="float-clear">
+        <i class="iconfont iconguanbi1 float-right preview-close" id="closeRename"></i>
+    </div>
+    <div class="text-center "><i class="iconfont iconbianji option-logo"></i> </div>
+    <div class="text-center option-title"></div>
+    <div class="text-center option-desc"></div>
+    <div class="float-clear">
+        <input class="form-input" id="rename" type="text" style="width: 420px;">
+    </div>
+    <div class="margin-top-v3">
+        <button class="float-left btn btn-cancel btn-md" id="cancelRename">取消</button>
+        <button class="float-right btn btn-forbid btn-md" id="saveName" data-edit="false">确定</button>
+    </div>
+</div>
+
+<!--资源下载进度条-->
+<div class="sarah-hide" id="filesDownloadProgress">
+    <span class="float-left">资源获取中</span>
+    <div class="progress-bg float-left">
+        <div class="progress-main progress-width"></div>
+    </div>
+    <span class="float-left download-progress">0%</span>
+</div>
+<div class="sarah-hide" id="dirsDownloadProgress">
+    <span class="float-left">资源获取中</span>
+    <div class="progress-bg float-left">
+        <div class="progress-slider progress-width"></div>
+    </div>
+</div>
+
+<script src="/static/js/common/jquery-3.4.1.min.js"></script>
+<script src="/static/js/common/util.js?v=<?=${js_version}?>"></script>
+<script src="/static/js/desktop/link_params.js?v=<?=${js_version}?>"></script>
+<script src="/static/js/embed/buffer.js?v=<?=${js_version}?>"></script>
+<script src="/static/js/embed/ipfs.js?v=<?=${js_version}?>"></script>
+<script src="/static/js/embed/storage_ipfs_list.js"></script>
+<script>
+    var config = {
+        host: "<?=${config.host}?>",
+        read_port: "<?=${config.read_port}?>",
+        write_port: "<?=${config.write_port}?>",
+    };
+    console.log("<?=${config.host}?>");
+    console.log("<?=${config.write_port}?>");
+    window.ipfs.init(config);
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>节点监测信息 - 正舵者矿机云监测</title>
+    <link href="/static/style/common/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/style/dark/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <?include dark/blade/header.blader.html?>
+    <?include dark/blade/left.menu.blader.html?>
+    <div class="main-contaim">
+        <div class="node-title">
+            <a class="node-link" href="/node/list">节点</a>
+            &gt;
+            <a class="node-link" href="#">节点监测</a>
+            <a class="btn-manage-node" href="/node/manage?<?=${node.v_qstr}?>">管理节点</a>
+        </div>
+        <div class="contain-jdjc-info">
+            <div class="contain-jdjc-right">
+                <div class="contain-jdxx clearfix">
+                    <div class="node-title" style="margin-left: 20px;">
+                        <img class="node-title-img" src="/static/image/dark/icon-jd.png" alt="节点">
+                        <span>节点信息</span>
+                    </div>
+                    <ul>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">状态</div>
+                            <div class="contain-jdxx-desc" id="node_id">
+                                <?if (${node.status} == 1) {?><em class="state-normal">运行中</em><?}?>
+                                <?if (${node.status} == 2) {?><em class="state-warning">重启中</em><?}?>
+                                <?if (${node.status} == 0) {?><em class="state-urgent" data-toggle="tooltip" title="最近硬件统计信息上于：<?=${node.updated_time}?>，超过了两倍interval时间">故障</em><?}?>
+                            </div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">UID</div>
+                            <div class="contain-jdxx-desc"><?=${node.node_uid}?></div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">版本号</div>
+                            <div class="contain-jdxx-desc"><?=${node.sarah_ver}?></div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">更新周期(S)</div>
+                            <div class="contain-jdxx-desc"><?=${node.sarah_interval}?></div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">网络地址</div>
+                            <div class="contain-jdxx-desc"><?=${node.ipaddr_str}?></div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">创建时间</div>
+                            <div class="contain-jdxx-desc"><?=${node.created_time}?></div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">启动时间</div>
+                            <div class="contain-jdxx-desc"><?=${node.bootat_time}?></div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">更新时间</div>
+                            <div class="contain-jdxx-desc"><?=${node.s_updated_time}?></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contain-jdxx clearfix">
+                    <div class="node-title" style="margin-left: 20px;">
+                        <img class="node-title-img" src="/static/image/dark/icon-jcjc.png" alt="节点">
+                        <span>基础监测</span>
+                    </div>
+                    <ul>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">系统负载</div>
+                            <div class="contain-jdxx-desc">
+                                <em class="state-<?=${node.load_state}?>" id="loadavg_box"><?=${node.load_avg_str}?></em>
+                            </div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">内存使用</div>
+                            <div class="contain-jdxx-desc">
+                                <em class="state-<?=${node.ram_state}?>" id="ram_box"><?=${node.ram_used_str}?>, <?=${node.ram_percent}?>%</em>
+                            </div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">磁盘使用</div>
+                            <div class="contain-jdxx-desc"><em class="state-<?=${node.disk_state}?>" id="disk_box"><?=${node.disk_used_str}?>, <?=${node.disk_percent}?>%</em></div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">下载带宽</div>
+                            <div class="contain-jdxx-desc" id="incoming_bd_box"><?=${node.incoming_bd_str}?>/sec</div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">上传带宽</div>
+                            <div class="contain-jdxx-desc" id="outgoing_bd_box"><?=${node.outgoing_bd_str}?>/sec</div>
+                        </li>
+                        <li class="contain-jdxx-list clearfix">
+                            <div class="contain-jdxx-title">更新时间</div>
+                            <div class="contain-jdxx-desc" id="updated_time_box"><?=${node.updated_time}?></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="contain-dtjc">
+                <div class="node-title">
+                    <img class="node-title-img" src="/static/image/dark/icon-dtjc.png" alt="动态监测">
+                    <span>动态监测</span>
+                </div>
+                <div class="userate-line" id="userate_line" ></div>
+                <div class="bandwidth_line" id="bandwidth_line"></div>
+            </div>
+        </div>
+    </div>
+    <?include dark/blade/footer.blader.html?>
+    <script src="/static/js/common/jquery.1.11.js"></script>
+    <script src="/static/js/common/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/common/echarts.common.min.js"></script>
+    <script type="text/javascript" src="/static/js/default/node-line.js?v=20181211"></script>
+    <script type="text/javascript" src="/static/js/common/util.js"></script>
+    <script language="javascript" src="/static/js/common/get-node-status.js"></script>
+    <script>
+        actionNav("node");
+        var status_params = {
+            target_id: "#node_id",
+            v_qstr: '<?=${node.v_qstr}?>'
+        };
+        window.node_status.init(status_params);
+        window.NodeLine.init({
+            skin: 'default',
+            userate_line_dom: document.getElementById('userate_line'),
+            bandwidth_line_dom: document.getElementById('bandwidth_line'),
+            v_qstr: '<?=${node.v_qstr}?>',
+            stat: {
+                loadavg: document.getElementById('loadavg_box'),
+                ram: document.getElementById('ram_box'),
+                disk: document.getElementById('disk_box'),
+                incoming_bd: document.getElementById('incoming_bd_box'),
+                outgoing_bd: document.getElementById('outgoing_bd_box'),
+                updated_time: document.getElementById('updated_time_box')
+            }
+        });
+    </script>
+</body>
+</html>

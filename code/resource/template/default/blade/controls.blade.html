@@ -1,0 +1,86 @@
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><strong>操作提示</strong></div>
+            <div class="modal-body">该删除操作不可逆，确认删除该记录？</div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <a class="btn btn-danger btn-ok">确认删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript">
+$('#confirm-delete').on('show.bs.modal', function(e) {
+    if ( e.relatedTarget ) {
+        var source = $(e.relatedTarget);
+        var modal = $(this);
+        modal.find('.btn-ok').attr('href', source.data('href'));
+        if ( source.data('body') ) {
+            modal.find('.modal-body').html(source.data('body'));
+        }
+
+        if ( source.data('title') ) {
+            modal.find('.modal-header strong').html(source.data('header'));
+        }
+    }
+});
+</script>
+
+<!--popup controls-->
+<div class="alert alert-dismissible alert-popup" role="alert" id="popup-alert">
+    <button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <span class="text">这里是内容文字！</span>
+</div>
+<script language="javascript">
+(function(window){
+    var jAlert = $('#popup-alert');
+    var jClose = jAlert.find('.close');
+    var jText = jAlert.find('.text');
+    var style = jAlert.attr('class');
+    var handler = null;
+
+    function hide()
+    {
+        if ( handler != null ) {
+            clearTimeout(handler);
+            handler = null;
+        }
+
+        jAlert.slideUp(250);
+    }
+
+    function show(type, str, timer, width)
+    {
+        jAlert.attr('class', style)
+            .addClass('alert-'+type);
+        if ( width ) {
+            jAlert.css('width', width);
+        }
+
+        jText.html(str);
+        center(jAlert, true, true);
+        jAlert.slideDown(250, function(){
+            if ( timer ) {
+                if ( handler != null ) {
+                    clearTimeout(handler);
+                    handler = null;
+                }
+
+                handler = setTimeout(function(){
+                    hide();
+                }, timer);
+            }
+        });
+    }
+
+    jClose.on('click', function(){hide();});
+    window.simplePopup = {
+        hide: function(){hide();},
+        success: function(str, timer, width) {show('success', str, timer, width);},
+        warning: function(str, timer, width) {show('warning', str, timer, width);},
+        danger: function(str, timer, width) {show('danger', str, timer, width);},
+        info: function(str, timer, width) {show('info', str, timer, width);}
+    }
+}(window));
+</script>

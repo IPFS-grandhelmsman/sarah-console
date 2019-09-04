@@ -1,0 +1,40 @@
+<?if(isset(${page})){
+$html = array();
+$html[] = '<nav class="pagination-nav"><ul class="pagination">';
+
+$html[] = '<li><a>总记录：'.${page}['total'].'</a></li>';
+$html[] = '<li><a>游标：'.${page}['c_cursor'].'</a></li>';
+if ( ${page}['c_cursor'] > 0 ) {
+    $html[] = '<li><a href="?">首页</a></li>';
+} else {
+    $html[] = '<li class="disabled"><a>首页</a></li>';
+}
+
+if ( ${page}['c_cursor'] > 0 ) {
+    $link = set_query_args(
+        array(
+            'cursor' => ${page}['p_cursor'],
+            'direction' => 'backward'
+        )
+    );
+    $html[] = '<li><a href="?'.$link.'">&lt;&lt;上一页</a></li>';
+} else {
+    $html[] = '<li class="disabled"><a>&lt;&lt;上一页</a></li>';
+}
+
+
+if ( ${page}['n_cursor'] != null ) {
+    $link = set_query_args(
+        array(
+            'cursor' => ${page}['n_cursor'],
+            'direction' => 'forward'
+        )
+    );
+    $html[] = '<li><a href="?'.$link.'">下一页&gt;&gt;</a></li>';
+} else {
+    $html[] = '<li class="disabled"><a>下一页</a></li>';
+}
+
+$html[] = '</ul></nav>';
+echo implode("\n", $html);
+}?>
