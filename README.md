@@ -39,6 +39,13 @@ File in:
 ${SARAH_ROOT}/code/config/database.config.php
 ```
 
+## Run additional services
+
+```shell
+./runtask.sh # run the task service of installing app.
+./jnode.sh   # run the data service of node map.
+```
+
 ## Template of nginx.conf
 
 You can find this template in ${SARAH_ROOT}/nginx.conf
