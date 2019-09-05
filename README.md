@@ -99,7 +99,7 @@ default passwd: sarah@321
 
 ## Changing file mode when unable to write the content to the cache file.
 ```shell
-cd ${SARAH_ROOT}/code/storage/cache/tpl
-chmod 0666 `find . -name "*.php"`
+cd ${SARAH_ROOT}/code/storage/
+chmod 0777 cache -R
 ```
 
