@@ -13,7 +13,7 @@ export SARAH_ROOT=`pwd` # Set SARAH_ROOT
 ## Install library
 
 ```shell
-sudo apt-get install nginx default-mysql-server redis memcached php-fpm php-mysql php-redis php-memcached php-curl php-gd php-json
+sudo apt-get install nginx default-mysql-server redis-server memcached php-fpm php-mysql php-redis php-memcached php-curl php-gd php-json
 
 mysql can use mysql5.5 or MariaDB10.0.x
 ```
