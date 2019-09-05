@@ -14,7 +14,7 @@ class DownloadController extends C_Controller
      * and it should be exactly the same with the one in client.
     */
     protected $version  = 1.56;
-    protected $md5_sign = '4027dadb31592b7a796c21f72b373b62';
+    protected $md5_sign = '58db5046706f9fdb79710eb37fcdcf11';
 
 
     private $app_key = NULL;
