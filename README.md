@@ -48,7 +48,7 @@ server {
 
     root /path/sarah-console/code/www;
     index index.php;
-    server_name grandhelmsman.com;
+    server_name sarah.grandhelmsman.com;
 
     location / { 
         # First attempt to serve request as file, then
@@ -89,10 +89,10 @@ Restart nginx
 sudo systemctl restart nignx
 
 Append domain grandhelmsman.com to /etc/hosts, or chaning domain to yours.
-sudo echo "127.0.0.1    grandhelmsman.com">>/etc/hosts
+sudo echo "127.0.0.1    sarah.grandhelmsman.com">>/etc/hosts
 
 Visit Sarah on pc brower.
-http://grandhelmsman.com
+http://sarah.grandhelmsman.com
 default account: sarah
 default passwd: sarah@321
 ```

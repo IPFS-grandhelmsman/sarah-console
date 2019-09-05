@@ -3,7 +3,7 @@
 # please get the app_key from sarah OS if it is not setted
 {
     "build" : "release",
-    "app_key" : "{sarahos_app_key}",
+    "app_key" : "bc8322a22512e61db247bdc5de4678f5000000015c0e2689",
 
     "disk_auto_partition": "false",
     "disk_mount_basedir": "/data",
